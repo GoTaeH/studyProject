@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
+
+html {
+    background-color: rgb(99, 105, 124);
+}
+
+body {
+    font-family: 'Orbit', sans-serif;
+    line-height: 1.3;
+    color: #333;
+}
+.bookmark {
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 0.8fr;
+    grid-gap: 8px;
+}
+
+.bookmark_games {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 0.8fr;
+    margin: 5px;
+}
+.top {
+    border: 1px solid #151e3a;
+    background-color: #e8e8e8;
+    padding: 8px;
+    text-align: center;
+}
+.list {
+    border: 1px solid#151e3a;
+    background-color: #e8e8e8;
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-btn {
+    cursor: pointer;
+}
+.star {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    background-position: center;
+}
+.star-empty {
+    content: url('../image/emptystar.png');
+    background-size: cover;
+    background-position: center;
+}
+
+@media(min-width:580px) {
+    .bookmark {
+        grid-template-columns: 0.5fr 1.5fr 1fr 0.5fr ;
+    }
+}

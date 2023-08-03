@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
+
+html {
+    background-color: rgb(99, 105, 124);
+}
+body {
+    margin: 0;
+}
+.category {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 0.8fr 0.8fr 1fr 1.1fr 1fr 0.8fr 0.8fr;
+    gap: 5px;
+    text-align: center;
+    height: 30px;
+    width: 100%;
+    font-family: 'Orbit', sans-serif;
+    font-size: 0.3rem;
+    background-color: rgb(13, 69, 129);
+}
+.cat_item {
+    color: rgb(230, 242, 253);
+    cursor: pointer;
+}
+.cat_item:hover {
+    color: azure;
+    background-color: rgb(16, 76, 141);
+    padding: 3px 1px 3px 1px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    align-content: stretch;
+    justify-items: center;
+    align-items: center;
+    grid-auto-rows: minmax(100px, auto);
+    gap: 30px;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+    grid-template-columns: 30px 30px 30px 30px 30px 30px;
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}
+/* 페이지 버튼 꾸미기 */
+
+/* 창의 가로 길이에 따라 조절(반응) */
+@media(min-width:580px) {
+    .category{
+        font-size: 0.8rem;
+    }
+    .info{
+        grid-template-columns: 1fr 1fr;
+    }
+}
