@@ -19,7 +19,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/html/main.html');
+    res.sendFile(path.join(__dirname, './', 'studyProject', 'html', 'main.html'));
 });
 app.get('/header', (req, res) => {
     res.sendFile(__dirname + '/html/header.html');
