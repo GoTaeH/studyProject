@@ -50,10 +50,10 @@ body {
     cursor: pointer;
 }
 
-.memberWindow {
+.membership {
     text-align: center;
 }
-.memberWindow a {
+.membership a {
     font-size: 14px;
     font-family: 'Orbit', sans-serif;
     color: rgb(18, 18, 81);

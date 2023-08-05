@@ -6,17 +6,17 @@
 
 body {
     margin: 0;
-    background-color: rgb(230, 232, 235);
+    background-color: white;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 
-.membership {
+.produce {
     border: 0;
     border-radius: 10px;
-    background-color: rgb(218, 237, 251);
+    background-color: rgb(201, 232, 255);
     padding: 20px;
     margin: 0 auto;
 }
@@ -48,13 +48,4 @@ body {
     border-radius: 5px;
     width: 80%;
     cursor: pointer;
-}
-
-.membership {
-    text-align: center;
-}
-.membership a {
-    font-size: 14px;
-    font-family: 'Orbit', sans-serif;
-    color: rgb(18, 18, 81);
 }
