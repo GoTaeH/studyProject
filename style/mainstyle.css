@@ -18,6 +18,7 @@ body {
     font-family: 'Orbit', sans-serif;
     font-size: 0.3rem;
     background-color: rgb(13, 69, 129);
+    white-space: nowrap;
 }
 .cat_item {
     color: rgb(230, 242, 253);
@@ -38,6 +39,7 @@ body {
     align-items: center;
     grid-auto-rows: minmax(100px, auto);
     gap: 30px;
+    white-space: nowrap;
 }
 
 .page {
@@ -56,7 +58,7 @@ body {
 /* 창의 가로 길이에 따라 조절(반응) 너비가 580px 이상일 때*/
 @media(min-width:580px) {
     html {
-        width: 100%;
+        max-width: 100%;
     }
     .category{
         font-size: 0.8rem;
