@@ -3,6 +3,5 @@ function check() {
 }
 
 function backLogin() {
-    // 원래 창에 메시지 보내기
-    window.opener.postMessage('closeMem', '*');
+    window.close();
 }
