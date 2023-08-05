@@ -16,7 +16,7 @@ body {
 .membership {
     border: 0;
     border-radius: 10px;
-    background-color: rgb(248, 252, 255);
+    background-color: rgb(218, 237, 251);
     padding: 20px;
     margin: 0 auto;
 }
@@ -46,7 +46,7 @@ body {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 100%;
+    width: 80%;
     cursor: pointer;
 }
 
