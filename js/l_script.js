@@ -1,3 +1,3 @@
 function memOpen() {
-    window.open('/html/membership', 'join the membership', 'width=500, height=500');
+    window.open('/membership', 'join the membership', 'width=700, height=700');
 }
