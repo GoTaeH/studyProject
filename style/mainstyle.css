@@ -53,8 +53,11 @@ body {
 }
 /* 페이지 버튼 꾸미기 */
 
-/* 창의 가로 길이에 따라 조절(반응) */
+/* 창의 가로 길이에 따라 조절(반응) 너비가 580px 이상일 때*/
 @media(min-width:580px) {
+    html {
+        width: 100%;
+    }
     .category{
         font-size: 0.8rem;
     }
