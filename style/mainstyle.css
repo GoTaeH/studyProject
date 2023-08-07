@@ -1,15 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
 
-html {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
 body {
     background-color: rgb(99, 105, 124);
-    margin: 0;
-    padding: 0;
-    padding-bottom: 40px;
+    padding-bottom: 25px;
 }
 
 #header_container {
