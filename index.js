@@ -33,7 +33,7 @@ app.get('/bookmark', (req, res) => {
 });
 
 app.get('/style/:name', (req, res) => {
-    res.sendFil(path.join(__dirname, '/style/', req.params.name));
+    res.sendFile(path.join(__dirname, '/style/', req.params.name));
 });
 app.get('/image/:name', (req, res) => {
     res.sendFile(path.join(__dirname, '/image/', req.params.name));
