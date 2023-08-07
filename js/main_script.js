@@ -1,17 +1,17 @@
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
+var xhttpHeader = new XMLHttpRequest();
+xhttpHeader.onreadystatechange = function() {
     if(this.readyState == 4 && this.status == 200) {
         document.getElementById("header_container").innerHTML = this.responseText;
     }
 };
-xhttp.open("GET", "/header", true);
-xhttp.send();
+xhttpHeader.open("GET", "/header", true);
+xhttpHeader.send();
 
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
+var xhttpSection = new XMLHttpRequest();
+xhttpSection.onreadystatechange = function() {
     if(this.readyState == 4 && this.status == 200) {
         document.getElementById("section_container").innerHTML = this.responseText;
     }
 };
-xhttp.open("GET", "/section", true);
-xhttp.send();
+xhttpSection.open("GET", "/section", true);
+xhttpSection.send();
