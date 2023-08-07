@@ -7,6 +7,9 @@ html {
 }
 body {
     background-color: rgb(99, 105, 124);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 40px;
 }
 
 #header_container {
@@ -51,6 +54,11 @@ body {
 }
 
 
+footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
 .page {
     display: grid;
     grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem;
@@ -63,7 +71,7 @@ body {
 .num_btn {
     width: 30px;
     height: 30px;
-    font-size: 13px;
+    font-size: 15px;
 }
 /* 페이지 버튼 꾸미기 */
 
