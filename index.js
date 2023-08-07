@@ -9,7 +9,7 @@ const cors = require('cors');
 
 app.use(
     cors({
-        origin: 'https://gogoth7.site/',
+        origin: 'https://gogoth7.site',
         credentials: true,
     })
 );
