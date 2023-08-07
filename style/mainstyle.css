@@ -69,6 +69,6 @@ body {
         font-size: 0.8rem;
     }
     .info{
-        flex: 0 0 calc(50% - 1rem);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
