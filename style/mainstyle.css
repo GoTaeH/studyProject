@@ -30,18 +30,6 @@ body {
     padding: 3px 1px 3px 1px;
 }
 
-.info {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: stretch;
-    align-content: stretch;
-    justify-items: center;
-    align-items: center;
-    grid-auto-rows: minmax(100px, auto);
-    gap: 30px;
-    white-space: nowrap;
-}
-
 .page {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, auto));

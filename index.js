@@ -1,6 +1,10 @@
 #!/usr/bin/node
 
 const express = require('express');
+const mysql = require('mysql');
+const dbconfig = require('../config/dbinfo.js');
+const connection = mysql.createConnection(dbconfig);
+
 const app = express();
 const port = 3000;
 
@@ -19,6 +23,9 @@ app.get('/', (req, res) => {
 });
 app.get('/header', (req, res) => {
     res.sendFile(__dirname + '/html/header.html');
+});
+app.get('/section', (req, res) => {
+    res.sendFile(__dirname + '/html/section.html');
 });
 
 app.get('/login', (req, res) => {
