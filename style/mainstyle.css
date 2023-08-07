@@ -1,20 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
 
 html {
-    background-color: rgb(99, 105, 124);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     width: 100%;
 }
+*, *::after, *::before {
+    box-sizing: inherit;
+}
 body {
-    margin: 0;
+    background-color: rgb(99, 105, 124);
 }
 
-/* 헤더 */
-#header_container {
-    background-color: #f2f2f2;
-    padding: 10px;
-}
 
-/* 카테고리 */
 .category {
     display: grid;
     align-items: center;
@@ -38,7 +37,6 @@ body {
     padding: 3px 1px 3px 1px;
 }
 
-/* 섹션 */
 .info {
     max-width: 1200px;
     margin: 0 auto;
@@ -68,13 +66,13 @@ body {
 .simple .info_btn {
     display: block;
     text-decoration: none;
-    background-color: rgb(156, 197, 255);
+    background-color: rgb(159, 193, 255);
     padding: 0.6rem 2rem;
     margin-top: 1rem;
     color: white;
 }
 
-/* 페이지 버튼 */
+
 .page {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, auto));
@@ -86,6 +84,7 @@ body {
     justify-items: center;
     align-items: center;
 }
+/* 페이지 버튼 꾸미기 */
 
 /* 창의 가로 길이에 따라 조절(반응) 너비가 580px 이상일 때*/
 @media(min-width:580px) {
@@ -95,7 +94,7 @@ body {
     .category{
         font-size: 0.8rem;
     }
-    .component {
+    .info{
         flex: 0 0 calc(50% - 1rem);
     }
 }
