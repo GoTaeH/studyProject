@@ -9,6 +9,10 @@ body {
     background-color: rgb(99, 105, 124);
 }
 
+#header_container {
+    height: 150px;
+}
+
 
 .category {
     display: grid;
