@@ -8,13 +8,13 @@ body {
     margin: 0;
 }
 
-
+/* 헤더 */
 #header_container {
     background-color: #f2f2f2;
     padding: 10px;
 }
 
-
+/* 카테고리 */
 .category {
     display: grid;
     align-items: center;
@@ -38,12 +38,43 @@ body {
     padding: 3px 1px 3px 1px;
 }
 
-
-#section_container {
-    padding: 20px;
+/* 섹션 */
+.info {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.component img {
+    max-width: 100%;
+    display: block;
+}
+.component .simple {
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background-color: white;
+}
+.simple h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    font-weight: 700;
+    font-family: 'Orbit', sans-serif;
+}
+.simple .info_btn {
+    display: block;
+    text-decoration: none;
+    background-color: rgb(156, 197, 255);
+    padding: 0.6rem 2rem;
+    margin-top: 1rem;
+    color: white;
 }
 
-
+/* 페이지 버튼 */
 .page {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, auto));
@@ -55,7 +86,6 @@ body {
     justify-items: center;
     align-items: center;
 }
-/* 페이지 버튼 꾸미기 */
 
 /* 창의 가로 길이에 따라 조절(반응) 너비가 580px 이상일 때*/
 @media(min-width:580px) {
@@ -64,5 +94,8 @@ body {
     }
     .category{
         font-size: 0.8rem;
+    }
+    .component {
+        flex: 0 0 calc(50% - 1rem);
     }
 }

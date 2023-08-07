@@ -24,9 +24,6 @@ app.get('/', (req, res) => {
 app.get('/header', (req, res) => {
     res.sendFile(__dirname + '/html/header.html');
 });
-app.get('/section', (req, res) => {
-    res.sendFile(__dirname + '/html/section.html');
-});
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/html/login.html');
