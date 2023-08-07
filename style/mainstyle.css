@@ -3,11 +3,7 @@
 html {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
     width: 100%;
-}
-*, *::after, *::before {
-    box-sizing: inherit;
 }
 body {
     background-color: rgb(99, 105, 124);
@@ -37,39 +33,17 @@ body {
     padding: 3px 1px 3px 1px;
 }
 
+
 .info {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.game {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.component img {
-    max-width: 100%;
-    display: block;
-}
-.component .simple {
-    text-align: center;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    background-color: white;
-}
-.simple h3 {
-    margin: 0;
-    font-size: 1.3rem;
-    line-height: 1.5;
-    font-weight: 700;
-    font-family: 'Orbit', sans-serif;
-}
-.simple .info_btn {
-    display: block;
-    text-decoration: none;
-    background-color: rgb(159, 193, 255);
-    padding: 0.6rem 2rem;
-    margin-top: 1rem;
-    color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    align-content: stretch;
+    justify-items: center;
+    align-items: center;
+    grid-auto-rows: minmax(100px, auto);
+    gap: 30px;
+    white-space: nowrap;
 }
 
 
