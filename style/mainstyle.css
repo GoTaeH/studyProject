@@ -50,12 +50,10 @@ body {
 .page {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, auto));
-    grid-template-columns: 30px 30px 30px 30px 30px 30px;
     gap: 10px;
     justify-content: center;
     align-content: center;
     text-align: center;
-    justify-items: center;
     align-items: center;
 }
 /* 페이지 버튼 꾸미기 */
