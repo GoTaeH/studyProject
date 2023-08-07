@@ -22,7 +22,7 @@
     font-family: 'Orbit', sans-serif;
     padding: 3px 9px;
     cursor: pointer;
-    max-width: 100px;
+    max-width: 110px;
 }
 #bookmark_btn:hover {
     background-color: rgb(13, 69, 129);
@@ -31,7 +31,7 @@
 
 .logo_img {
     max-width: 100%;
-    height: 180px;
+    height: auto;
     margin: auto;
     display: block;
 }
@@ -54,7 +54,7 @@
     color: rgb(218, 255, 85);
 }
 
-@media(min-width:580px) {
+@media(min-width:640px) {
     #bookmark_btn{
         font-size: 1rem;
         padding: 5px 15px;
