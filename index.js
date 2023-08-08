@@ -6,10 +6,9 @@ const port = 3000;
 
 const path = require('path');
 const cors = require('cors');
-const mysql = require('mysql');
-const dbconfig = require('../config/dbinfo.js');
-const { resourceLimits } = require('worker_threads');
-const connection = mysql.createConnection(dbconfig);
+// const mysql = require('mysql');
+// const dbconfig = require('../config/dbinfo.js');
+// const connection = mysql.createConnection(dbconfig);
 
 app.use(
     cors({
@@ -47,31 +46,6 @@ app.get('/js/:name', (req, res) => {
 });
 
 
-// 페이지네이션 위한 API 엔드포인트 추가
-app.get('/game', (req, res) => {
-    const page = parseInt(req.query.page) || 1;     // 현재 페이지 번호
-    const itemPerPage = parseInt(req.query.itemPerPage) || 6;      // 페이지 당 아이템 개수
-    const startIndex = (page - 1) * itemPerPage;
-
-    const query = `
-    SELECT * FROM game.*, category.catname
-    FROM game JOIN category ON game.categoryid = category.categoryid
-    ORDER BY game.id
-    LIMIT ${itemPerPage} OFFSET ${startIndex}`;
-
-    connection.query(query, (err, row) => {
-        if(err) {
-            console.error(err);
-            res.status(500).json({ error: 'Internal Server Error' });
-            return;
-        }
-        res.json({
-            item: row,
-            currentPage: page,
-            itemPerPage: itemPerPage
-        });
-    });
-});
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
