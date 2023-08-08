@@ -17,7 +17,7 @@ pageBtn.forEach(btn => {
         const newPage = btn.dataset.page;
         if(newPage !== currentPage) {
             currentPage = newPage; // 현재 페이지 번호 업데이트
-            fetch(`/game?page=${page}&itemPerPage=6`)
+            fetch(`/game?page=${currentPage}&itemPerPage=6`)
                 .then(response => response.json())
                 .then(data => {
                     updatePageContent(data);
