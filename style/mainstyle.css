@@ -58,7 +58,7 @@ body {
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 220px;
+    max-width: 250px;
     margin: 0 auto;
 }
 .game_img {
@@ -106,7 +106,7 @@ footer {
         grid-template-rows: repeat(2, 300px);
     }
     .game {
-        max-width: 220px;   /*카드 최대 넓이*/
+        max-width: 250px;   /*카드 최대 넓이*/
         margin: 0 auto; /*가운데 정렬*/
     }
 }
@@ -116,7 +116,7 @@ footer {
         grid-template-rows: repeat(10, 300px);
     }
     .game {
-        max-width: 220px;   /*카드 최대 넓이*/
+        max-width: 250px;   /*카드 최대 넓이*/
         margin: 0 auto; /*가운데 정렬*/
     }
     .num_btn {
