@@ -13,7 +13,7 @@ let currentPage = 1;    // 페이지 번호 초기 값
 // 페이지 버튼 클릭 이벤트 처리
 const pageBtn = document.querySelectorAll('.num_btn');
 pageBtn.forEach(btn => {
-    btn.addEventListener('clike', () => {
+    btn.addEventListener('click', () => {
         const newPage = btn.dataset.page;
         if(newPage !== currentPage) {
             currentPage = newPage; // 현재 페이지 번호 업데이트
@@ -38,8 +38,12 @@ function updatePageContent(data) {
         const gameElement = document.createElement('div');
         gameElement.className = 'game';
         gameElement.innerHTML = `
-        <img class"game_img src="../image/${game.id}.png">
+        <img class"game_img" src="../image/${game.id}.png">
         <h3>${game.name}</h3><p>${game.category_catname}</p>`;
         gameContainer.appendChild(gameElement);
+
+        gameElement.addEventListener('click', () => {
+            window.location.href = `/game_info?id=${game.id}`;
+        });
     });
 }
