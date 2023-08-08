@@ -89,6 +89,16 @@ footer {
 }
 /* 페이지 버튼 꾸미기 */
 
+@media(min-width:1350px) {
+    .info {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 300px);
+    }
+    .game {
+        max-width: 220px;   /*카드 최대 넓이*/
+        margin: 0 auto; /*가운데 정렬*/
+    }
+}
 /* 창의 가로 길이에 따라 조절(반응) 너비가 580px 이상일 때*/
 @media(min-width:640px) {
     html {
