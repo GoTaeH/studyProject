@@ -1,21 +1,23 @@
-function logout() {
-    // 로그아웃 로직 처리 후, 버튼 보이도록 변경, 로그인 버튼 숨김
-    document.querySelector('.logout-btn').style.display = 'none';
-    document.querySelector('.login-btn').style.display = 'block';
-}
+// const logout_btn = document.getElementById('logout_btn');
+// logout_btn.addEventListener('click', () => {
+//     window.location.href = '/logout';
+// });
 
-function updateBtn(isLoggedIn) {
-    const loginBtn = document.getElementById('login_btn');
-    const logoutBtn = document.querySelector('.logout_btn');
+// const loginButton = document.getElementById('login_btn');
+// const logoutButton = document.getElementById('logout_btn');
 
-    if(isLoggedIn) {
-        loginBtn.style.display = 'none';
-        logoutBtn.style.display = 'block';
-    } else {
-        loginBtn.style.display = 'block';
-        logoutBtn.style.display = 'none';
-    }
-}
+// // 로그인 상태에 따라 버튼 표시 여부 결정
+// if (isLoggedIn()) {
+//     loginButton.style.display = 'none'; // 로그인 버튼 숨김
+//     logoutButton.style.display = 'block'; // 로그아웃 버튼 표시
+// } else {
+//     loginButton.style.display = 'block'; // 로그인 버튼 표시
+//     logoutButton.style.display = 'none'; // 로그아웃 버튼 숨김
+// }
 
-// 사용자가 로그인,로그아웃 했을 때 호출될 함수 (true:로그인됨, false:로그아웃됨)
-updateBtn(isLoggedIn);
+// // 로그인 여부를 판단하는 함수 (예시)
+// function isLoggedIn() {
+//     // 세션에 로그인 정보가 있는지 여부를 검사하는 로직
+//     // 실제로는 백엔드와 통신하거나 세션 정보를 확인해야 합니다.
+//     return false; // 예시로 로그인 상태가 아님을 반환
+// }

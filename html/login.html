@@ -2,13 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
         <title>PC 게임 인포 로그인</title>
         <link href="/style/l_style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="login">
             <img class="login_logo" src="/image/transparent_logo.png">
-            <form>
+            <form action="/login" method="POST">
                 <input class="text-field" type="text" name="email" placeholder="아이디(email)">
                 <input class="text-field" type="text" name="password" placeholder="비밀번호">
                 <button class="submit-btn" type="button" onclick="location.href='/'">로그인</button>

@@ -40,7 +40,7 @@ body {
 .info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 300px);
+    grid-template-rows: repeat(5, 300px);
     justify-content: stretch;
     gap: 20px;
     padding-top: 10px;
@@ -66,6 +66,10 @@ body {
     height: auto;
     margin-bottom: 10px;
 }
+.game:hover {
+    box-shadow: 1px 1px 20px #323a43;
+    cursor: pointer;
+}
 
 
 footer {
@@ -89,18 +93,8 @@ footer {
 }
 /* 페이지 버튼 꾸미기 */
 
-@media(min-width:1350px) {
-    .info {
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(2, 300px);
-    }
-    .game {
-        max-width: 220px;   /*카드 최대 넓이*/
-        margin: 0 auto; /*가운데 정렬*/
-    }
-}
-/* 창의 가로 길이에 따라 조절(반응) 너비가 580px 이상일 때*/
-@media(min-width:640px) {
+/* 창의 가로 길이에 따라 조절(반응) 너비가 670px 이상일 때*/
+@media(min-width:1000px) {
     html {
         max-width: 100%;
     }
@@ -108,7 +102,7 @@ footer {
         font-size: 1rem;
     }
     .info {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 300px);
     }
     .game {
@@ -116,10 +110,10 @@ footer {
         margin: 0 auto; /*가운데 정렬*/
     }
 }
-@media(max-width:500px) {
+@media(max-width:640px) {
     .info {
         grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(6, 300px);
+        grid-template-rows: repeat(10, 300px);
     }
     .game {
         max-width: 220px;   /*카드 최대 넓이*/

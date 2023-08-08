@@ -1,6 +1,7 @@
 #!/usr/bin/node
 
 const express = require('express');
+// const session = require('express-session');
 const app = express();
 const port = 3000;
 
@@ -10,12 +11,34 @@ const cors = require('cors');
 // const dbconfig = require('../config/dbinfo.js');
 // const connection = mysql.createConnection(dbconfig);
 
+// app.use(session({
+//     secret: 'lsakd!dfs#$asd',
+//     resave: false,
+//     saveUninitialized: true
+// }));
+
 app.use(
     cors({
         origin: 'https://gogoth7.site',
         credentials: true,
     })
 );
+
+// // 로그인 로직
+// app.post('/login', (req, res) => {
+    
+// })
+// // 로그아웃 로직
+// app.get('/logout', (req, res) => {
+//     req.session.destroy((err) => {
+//         if(err) {
+//             console.error(err);
+//         } else {
+//             res.redirect('/');
+//         }
+//     });
+// });
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/main.html'));
