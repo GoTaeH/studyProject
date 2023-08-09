@@ -54,6 +54,25 @@
     color: rgb(218, 255, 85);
 }
 
+#logout_btn {
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    background-color: transparent;
+    color: rgb(5, 8, 28);
+    border: 1.5px solid rgb(186, 220, 255);
+    border-radius: 20px;
+    font-family: 'Orbit', sans-serif;
+    padding: 3px 9px;
+    cursor: pointer;
+    max-width: 80px;
+}
+#logout_btn:hover {
+    background-color: rgb(45, 111, 181);
+    color: rgb(207, 231, 121);
+}
+
+
 @media(min-width:640px) {
     #bookmark_btn{
         font-size: 1rem;
