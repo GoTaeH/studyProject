@@ -50,11 +50,18 @@ app.post('/login', (req, res) => {
             return res.status(500).send('서버 오류 발생');
         }
         if (rows.length === 0) {
-            return res.status(401).send('이메일 또는 비밀번호가 틀렸습니다.');
+            return res.redirect('/login?error=authFailed');
         }
+        // 쿠키 설정
+        res.cookie('user', email, {
+            path: '/',        // 쿠키의 path를 모든 경로에서 접근 가능하도록 설정
+            sameSite: 'lax',  // SameSite 설정을 Lax로 설정
+            httpOnly: true,   // httpOnly 설정을 true로 하여 JavaScript에서 쿠키에 접근하지 못하도록 설정
+            secure: true,   // HTTPS 연결에서만 쿠키를 전달받도록 설정
+        });
+
         req.session.user = { email };
-        res.setHeader('Set-Cookie', ['user=' + email]);
-        res.redirect('/');
+        res.redirect('/?logged');
     });
 });
 
@@ -81,8 +88,11 @@ app.get('/', (req, res) => {
     console.log(req.session);
     res.sendFile(path.join(__dirname, '/html/main.html'));
 });
-app.get('/header', (req, res) => {
+app.get('/header1', (req, res) => {
     res.sendFile(path.join(__dirname, '/html/header.html'));
+});
+app.get('/header2', (req, res) => {
+    res.sendFile(path.join(__dirname, '/html/header2.html'));
 });
 
 app.get('/login', (req, res) => {
