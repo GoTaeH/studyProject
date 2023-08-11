@@ -59,8 +59,8 @@ body {
     cursor: pointer;
 }
 
-/* .error-message {
+#error-message {
     text-align: center;
     font-family: 'Orbit', sans-serif;
-    font-size: 11px;
-} */
+    font-size: 12px;
+}
