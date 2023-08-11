@@ -21,12 +21,12 @@ app.use(express.json());    // 요청 본문을 JSON으로 파싱
 app.use(express.urlencoded({ extended: true})); // 폼 데이터 파싱
 app.use(cookieParser());
 app.use(session({
-    secret: 'lsakd!dfs#$asd',
+    secret: 'lysk&akd!dfs#$asd',
     resave: false,
     saveUninitialized: true,
-    // cookie: {
-    //     maxAge: 3600000 //세션 유효 기간 : 1시간
-    // }
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 3
+    }
 }));
 
 app.use(
@@ -43,6 +43,15 @@ app.post('/login', (req, res) => {
     if (req.session.user && req.session.user.email === email) {
         res.redirect('/');
     }
+    const validReferer = 'https://gogoth7.site/login';
+
+    // Referer 헤더 확인
+    const referer = req.get('Referer');
+
+    if (!referer || !referer.startsWith(validReferer)) {
+        return res.status(403).send('referer 검증 실패');
+    }
+
     const query = 'SELECT * FROM member WHERE email = ? AND password = ?';
     connection.query(query, [email, password], (error, rows) => {
         if (error) {
