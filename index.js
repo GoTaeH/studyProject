@@ -13,9 +13,11 @@ const { createConnection } = require('net');
 
 const mysql = require('mysql');
 const dbconfig = require('../config/dbinfo.js');
-
 const { error } = require('console');
 const connection = mysql.createConnection(dbconfig);
+
+var apicontroller = require('./controller/apicontroller.js');
+var maincontroller = require('./controller/maincontroller.js');
 
 app.use(express.json());    // 요청 본문을 JSON으로 파싱
 app.use(express.urlencoded({ extended: true})); // 폼 데이터 파싱
@@ -35,6 +37,8 @@ app.use(
         credentials: true,
     })
 );
+app.use('/api', apicontroller);
+app.use('/', maincontroller);
 
 // 로그인 로직
 app.post('/login', (req, res) => {
@@ -43,7 +47,10 @@ app.post('/login', (req, res) => {
     if (req.session.user && req.session.user.email === email) {
         res.redirect('/');
     }
-    const validReferer = 'https://gogoth7.site/login';
+    if (!email || !password) {
+        return res.redirect('/login?error=missingFields');
+    }
+    const validReferer = 'http://localhost:3000/login';
 
     // Referer 헤더 확인
     const referer = req.get('Referer');
@@ -85,46 +92,6 @@ app.get('/logout', (req, res) => {
         }
     });
 });
-
-app.get('/api', (req, res) => {
-    connection.query('SELECT * FROM member', (error, rows) => {
-        if(error) throw error;
-        res.send(rows);
-    });
-});
-
-app.get('/', (req, res) => {
-    console.log(req.session);
-    res.sendFile(path.join(__dirname, '/html/main.html'));
-});
-app.get('/header1', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/header.html'));
-});
-app.get('/header2', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/header2.html'));
-});
-
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/login.html'));
-});
-app.get('/membership', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/membership.html'));
-});
-
-app.get('/bookmark', (req, res) => {
-    res.sendFile(path.join(__dirname, '/html/bookmark.html'));
-});
-
-app.get('/style/:name', (req, res) => {
-    res.sendFile(path.join(__dirname, '/style/', req.params.name));
-});
-app.get('/image/:name', (req, res) => {
-    res.sendFile(path.join(__dirname, '/image/', req.params.name));
-});
-app.get('/js/:name', (req, res) => {
-    res.sendFile(path.join(__dirname, '/js/', req.params.name));
-});
-
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
