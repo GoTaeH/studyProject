@@ -65,7 +65,7 @@
     font-family: 'Orbit', sans-serif;
     padding: 3px 9px;
     cursor: pointer;
-    max-width: 80px;
+    max-width: 110px;
 }
 #logout_btn:hover {
     background-color: rgb(13, 69, 129);
