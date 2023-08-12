@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const errorMessageP = document.getElementById('error-message');
         errorMessageP.textContent = '이메일 또는 비밀번호가 틀렸습니다.';
         errorMessageP.style.display = 'block';
+    } else if (errorMessage === 'missingFields') {
+        const errorMessageP = document.getElementById('error-message');
+        errorMessageP.textContent = '이메일 또는 비밀번호가 입력되지 않았습니다.';
+        errorMessageP.style.display = 'block';
     }
 });
 
