@@ -50,8 +50,7 @@ app.post('/login', (req, res) => {
     if (!email || !password) {
         return res.redirect('/login?error=missingFields');
     }
-    // const validReferer = 'https://gogoth7.site/login';
-    const validReferer = 'http://localhost:3000/login';
+    const validReferer = 'https://gogoth7.site/login';
 
     // Referer 헤더 확인
     const referer = req.get('Referer');
