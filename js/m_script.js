@@ -21,6 +21,7 @@ function createAccount() {
         console.log('서버응답:', data);
         if (data.success) {
             alert('계정이 생성되었습니다.');
+            window.close();
         } else {
             alert('이미 사용 중인 이메일입니다.');
         }
