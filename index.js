@@ -19,6 +19,9 @@ const connection = mysql.createConnection(dbconfig);
 var apicontroller = require('./controller/apicontroller.js');
 var maincontroller = require('./controller/maincontroller.js');
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'html'));
+
 app.use(express.json());    // 요청 본문을 JSON으로 파싱
 app.use(express.urlencoded({ extended: true})); // 폼 데이터 파싱
 app.use(cookieParser());
@@ -50,7 +53,8 @@ app.post('/login', (req, res) => {
     if (!email || !password) {
         return res.redirect('/login?error=missingFields');
     }
-    const validReferer = 'https://gogoth7.site/login';
+    // const validReferer = 'https://gogoth7.site/login';
+    const validReferer = 'http://localhost:3000/login';
 
     // Referer 헤더 확인
     const referer = req.get('Referer');
@@ -152,6 +156,40 @@ app.post('/check', (req, res) => {
         return res.status(200).json({ exists: count > 0 }); // 중복된 값이 있다면 count값이 1
     })
 })
+
+// 게임 정보 페이지 내용
+app.post('/gameinfo', (req, res) => {
+    const query = 'SELECT * FROM game';
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: '데이터베이스 오류' });
+        }
+        res.status(200).json(results);
+    });
+});
+
+// 게임 정보 페이지로 이동
+app.get('/gameinfo/:gameId', (req, res) => {
+    const gameId = req.params.gameId;
+
+    const query = 'SELECT * FROM game WHERE gameid = ?';
+    connection.query(query, [gameId], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).send('서버 오류 발생');
+        }
+
+        if (results.length === 0) {
+            return res.status(404).send('게임 정보를 찾을 수 없습니다.');
+        }
+
+        const gameInfo = results[0];
+        const userLoggedIn = req.session.user !== undefined;
+
+        res.render('game_info', { gameInfo, games: results, userLoggedIn }); // game_info.ejs 렌더링
+    });
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

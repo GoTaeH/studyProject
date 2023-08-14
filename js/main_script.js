@@ -1,3 +1,4 @@
+// 헤더 변경 (로그인 유무)
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/api', {
@@ -21,4 +22,56 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error(error);
     }
+});
+
+// 게임 정보 페이지로 이동
+async function loadGameInfo() {
+    try {
+        const response = await fetch('/gameinfo', {
+            method: 'POST',
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const games = await response.json();
+            const infoContainer = document.querySelector('.info');
+
+            games.forEach(game => {
+                const gameCard = createGameCard(game);
+                infoContainer.appendChild(gameCard);
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function createGameCard(game) {
+    const gameCard = document.createElement('div');
+    gameCard.classList.add('game');
+
+    const gameImage = document.createElement('img');
+    gameImage.classList.add('game_img');
+    gameImage.src =  `/image/${game.gameid}.png`;
+
+    const gameName = document.createElement('h4');
+    gameName.textContent = game.name;
+
+    const gameCategory = document.createElement('p');
+    gameCategory.textContent = game.category;
+
+    gameCard.appendChild(gameImage);
+    gameCard.appendChild(gameName);
+    gameCard.appendChild(gameCategory);
+
+    gameCard.addEventListener('click', () => {
+        window.location.href = `/gameinfo/${game.gameid}`;
+    });
+
+    return gameCard;
+}
+
+// 페이지 로드 시 게임 정보 불러오기
+document.addEventListener('DOMContentLoaded', () => {
+    loadGameInfo();
 });

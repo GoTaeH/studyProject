@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #c2d6dd;
+    margin: 5px;
+}
+
+.gameinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 13px;
+}
+
+.gm_img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 12px;
+    max-width: 100%;
+    width: 100%;
+}
+#reviewInput {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    margin-bottom: 10px;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 11px;
+}
+#reviewInput::placeholder {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 11px;
+}
+#submitReview {
+    background-color: #0967cb;
+    color: #fff;
+    border: none;
+    padding: 5px 8px;
+    margin: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#submitReview:hover {
+    background-color: #133e6d;
+}

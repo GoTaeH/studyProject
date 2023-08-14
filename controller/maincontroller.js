@@ -23,6 +23,9 @@ router.get('/membership', (req, res) => {
 router.get('/bookmark', (req, res) => {
     res.sendFile(path.join(__dirname, '../html/bookmark.html'));
 });
+router.get('/gameinfo', (req, res) => {
+    res.sendFile(path.join(__dirname, '../html/game_info.html'));
+});
 
 router.get('/style/:name', (req, res) => {
     res.sendFile(path.join(__dirname, '../style/', req.params.name));
