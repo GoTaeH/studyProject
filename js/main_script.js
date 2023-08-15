@@ -18,27 +18,47 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 headerContainer.innerHTML = await fetch('/header1').then(response => response.text());
             }
+            loadAllGame();
         }
     } catch (error) {
         console.error(error);
     }
 });
 
-// 게임 정보 페이지로 이동
-async function loadGameInfo() {
+async function loadAllGame() {
     try {
-        const response = await fetch('/gameinfo', {
-            method: 'POST',
+        const response = await fetch('/api/game', {
+            method: 'GET',
             credentials: 'include'
         });
-
-        if (response.ok) {
+        if(response.ok) {
             const games = await response.json();
             const infoContainer = document.querySelector('.info');
+            infoContainer.innerHTML = ''; // 이전 카드 제거
 
             games.forEach(game => {
                 const gameCard = createGameCard(game);
                 infoContainer.appendChild(gameCard);
+            });
+
+            // 카테고리 클릭
+            const categories = document.querySelectorAll('.cat_item');
+            categories.forEach(category => {
+                category.addEventListener('click', async () => {
+                    const categoryId = category.getAttribute('data_catid');
+                    const response = await fetch(`/api/cat/${categoryId}`,{
+                        method: 'GET',
+                        credentials: 'include'
+                    });
+                    if(response.ok) {
+                        const categoryGames = await response.json();
+                        infoContainer.innerHTML = '';
+                        categoryGames.forEach(game => {
+                            const gameCard = createGameCard(game);
+                            infoContainer.appendChild(gameCard);
+                        });
+                    }
+                });
             });
         }
     } catch (error) {
@@ -46,6 +66,7 @@ async function loadGameInfo() {
     }
 }
 
+// 게임 카드 생성
 function createGameCard(game) {
     const gameCard = document.createElement('div');
     gameCard.classList.add('game');
@@ -73,5 +94,5 @@ function createGameCard(game) {
 
 // 페이지 로드 시 게임 정보 불러오기
 document.addEventListener('DOMContentLoaded', () => {
-    loadGameInfo();
+    loadAllGame();
 });

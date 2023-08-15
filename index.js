@@ -157,18 +157,6 @@ app.post('/check', (req, res) => {
     })
 })
 
-// 게임 정보 페이지 내용
-app.post('/gameinfo', (req, res) => {
-    const query = 'SELECT * FROM game';
-    connection.query(query, (error, results) => {
-        if (error) {
-            console.error(error);
-            return res.status(500).json({ error: '데이터베이스 오류' });
-        }
-        res.status(200).json(results);
-    });
-});
-
 // 게임 정보 페이지로 이동
 app.get('/gameinfo/:gameId', (req, res) => {
     const gameId = req.params.gameId;
@@ -187,7 +175,33 @@ app.get('/gameinfo/:gameId', (req, res) => {
         const gameInfo = results[0];
         const userLoggedIn = req.session.user !== undefined;
 
-        res.render('game_info', { gameInfo, games: results, userLoggedIn }); // game_info.ejs 렌더링
+        res.render('game_info', { gameInfo, userLoggedIn }); // game_info.ejs 렌더링
+    });
+});
+
+
+app.get('/api/cat/:categoryId', (req, res) => {
+    const categoryId = req.params.categoryId;
+    const query = 'SELECT game_gameid FROM cat_game WHERE category_categoryid = ?';
+    connection.query(query, [categoryId], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: '데이터베이스 오류' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: '해당 카테고리에 게임이 없습니다.' });
+        }
+
+        const gameIds = results.map(result => result.game_gameid);
+        const gamesQuery = 'SELECT * FROM game WHERE gameid IN (?)';
+        connection.query(gamesQuery, [gameIds], (gamesError, gamesResults) => {
+            if (gamesError) {
+                console.error(gamesError);
+                return res.status(500).json({ error: '데이터베이스 오류' });
+            }
+            res.status(200).json(gamesResults);
+        });
     });
 });
 

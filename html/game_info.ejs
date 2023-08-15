@@ -2,20 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PC 게임 인포 소개</title>
         <link href="/style/infostyle.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="gameinfo" id="gameinfo">
-            <% games.forEach(game => { %>
-                <div class="content">
-                    <img class="gm_img" src="/image/<%= game.gameid %>.png">
-                    <p><%= game.name %></p>
-                    <p>가격: <%= game.price %></p>
-                    <p>설명: <%= game.detail %></p>
-                </div>
-            <% }); %>
+            <div class="content">
+                <img class="gm_img" src="/image/<%= gameInfo.gameid %>.png">
+                <p><%= gameInfo.name %></p>
+                <p>가격: <%= gameInfo.price %></p>
+                <p>설명: <%= gameInfo.detail %></p>
+            </div>
         </div>
         <div class="review-form">
             <h3>리뷰 작성</h3>

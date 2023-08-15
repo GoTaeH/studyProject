@@ -9,9 +9,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/member', model.getMember);
-router.get('/cat', model.getCat);
 router.get('/game', model.getGame);
 router.get('/review', model.getReview);
-
+router.get('/catgame', model.getCatGame);
 
 module.exports = router;
