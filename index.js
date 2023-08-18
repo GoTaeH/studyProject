@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'html'));
 
 app.use(express.json());    // 요청 본문을 JSON으로 파싱
-app.use(express.urlencoded({ extended: true})); // 폼 데이터 파싱
+app.use(express.urlencoded({ extended: true })); // 폼 데이터 파싱
 app.use(cookieParser());
 app.use(session({
     secret: 'lysk&akd!dfs#$asd',
@@ -53,8 +53,8 @@ app.post('/login', (req, res) => {
     if (!email || !password) {
         return res.redirect('/login?error=missingFields');
     }
-    // const validReferer = 'https://gogoth7.site/login';
-    const validReferer = 'http://localhost:3000/login';
+    const validReferer = 'https://gogoth7.site/login';
+    // const validReferer = 'http://localhost:3000/login';
 
     // Referer 헤더 확인
     const referer = req.get('Referer');

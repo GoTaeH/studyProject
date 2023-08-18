@@ -48,6 +48,19 @@ submitReviewButton.addEventListener('click', async () => {
     if(userLoggedIn) {
         if(reviewText.trim() !== '') {
             try {
+                // 중복 리뷰 체크
+                const duplicateResponse = await fetch(`/api/checkDuplicate?gameid=${gameId}`);
+                if (!duplicateResponse.ok) {
+                    console.error('중복 리뷰 체크 실패');
+                    alert('리뷰 중복 확인에 실패했습니다.');
+                    return;
+                }
+                const duplicateCheck = await duplicateResponse.json();
+                if (duplicateCheck.hasDuplicateReview) {
+                    alert('이미 해당 게임의 리뷰를 작성하셨습니다.');
+                    return;
+                }
+                // 리뷰 등록
                 const response = await fetch('/api/review', {
                     method: 'POST',
                     headers: {
@@ -67,6 +80,8 @@ submitReviewButton.addEventListener('click', async () => {
                     console.log('리뷰 성공적 제출:', reviewText);
                     alert('리뷰가 성공적으로 등록되었습니다.');
                     reviewInput.value = '';
+
+                    updateReviews();
                 } else {
                     console.error('리뷰 저장 실패');
                     alert('리뷰 등록에 실패했습니다.');
@@ -85,15 +100,16 @@ submitReviewButton.addEventListener('click', async () => {
 
 const reviewContainer = document.createElement('div');
 reviewContainer.classList.add('reviews_container');
-// 리뷰 표시
-fetch(`/api/game/${gameId}/reviews`)
-    .then(response => {
-        if (!response.ok) {
+const updateReviews = async () => {
+    try {
+        const reviewResponse = await fetch(`/api/game/${gameId}/reviews`);
+        if (!reviewResponse.ok) {
             throw new Error('리뷰 데이터 가져오기 실패');
         }
-        return response.json();
-    })
-    .then(reviews => {
+        const reviews = await reviewResponse.json();
+        const reviewContainer = document.getElementById('review_data');
+        reviewContainer.innerHTML = ''; // 기존 리뷰 컨테이너 내용 초기화
+
         for (const review of reviews) {
             const reviewElement = document.createElement('div');
             reviewElement.classList.add('review');
@@ -111,10 +127,9 @@ fetch(`/api/game/${gameId}/reviews`)
 
             reviewContainer.appendChild(reviewElement);
         }
-
-        const reviewdataDiv = document.getElementById('review_data');
-        reviewdataDiv.appendChild(reviewContainer);
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('리뷰 데이터 가져오기 오류', error);
-    });
+    }
+};
+
+updateReviews();
