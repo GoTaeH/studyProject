@@ -83,6 +83,8 @@ submitReviewButton.addEventListener('click', async () => {
     }
 });
 
+const reviewContainer = document.createElement('div');
+reviewContainer.classList.add('reviews_container');
 // 리뷰 표시
 fetch(`/api/game/${gameId}/reviews`)
     .then(response => {
@@ -92,9 +94,6 @@ fetch(`/api/game/${gameId}/reviews`)
         return response.json();
     })
     .then(reviews => {
-        const reviewContainer = document.createElement('div');
-        reviewContainer.classList.add('reviews_container');
-
         for (const review of reviews) {
             const reviewElement = document.createElement('div');
             reviewElement.classList.add('review');

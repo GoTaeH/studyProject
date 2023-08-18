@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.get('/member', model.getMember);
 router.get('/game', model.getGame);
 router.get('/catgame', model.getCatGame);
-router.post('/saveReview', (req, res) => {
+router.post('/review', (req, res) => {
     const { gameid, contents } = req.body;
     const userEmail = req.session.user.email;
     model.getUserIdByEmail(userEmail, (error, userid) => {
