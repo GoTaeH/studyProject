@@ -37,18 +37,44 @@ fetch(`/api/game`)
         console.error('데이터 가져오기 오류:', error);
     });
 
+// 리뷰 작성 및 등록
 const reviewInput = document.getElementById('reviewInput');
 const submitReviewButton = document.getElementById('submitReview');
 
-submitReviewButton.addEventListener('click', () => {
+submitReviewButton.addEventListener('click', async () => {
     const reviewText = reviewInput.value;
     const userLoggedIn = submitReviewButton.getAttribute('data-userLoggedIn') === 'true';
 
     if(userLoggedIn) {
         if(reviewText.trim() !== '') {
-        console.log('작성한 리뷰:', reviewText);
-        alert('리뷰가 성공적으로 등록되었습니다.');
-        reviewInput.value = '';
+            try {
+                const response = await fetch('/api/review', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        gameid: gameId,
+                        contents: reviewText
+                    })
+                });
+                if(response.ok) {
+                    const newReview = document.createElement('div');
+                    newReview.classList.add('review');
+                    newReview.textContent = reviewText;
+                    reviewContainer.appendChild(newReview);
+
+                    console.log('리뷰 성공적 제출:', reviewText);
+                    alert('리뷰가 성공적으로 등록되었습니다.');
+                    reviewInput.value = '';
+                } else {
+                    console.error('리뷰 저장 실패');
+                    alert('리뷰 등록에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('리뷰 저장 오류:', error);
+                alert('오류로 인해 리뷰를 등록할 수 없습니다.');
+            }
         } else {
             alert('리뷰 내용을 입력하세요.');
         }
@@ -56,3 +82,40 @@ submitReviewButton.addEventListener('click', () => {
         alert('로그인 후 리뷰를 작성할 수 있습니다.');
     }
 });
+
+// 리뷰 표시
+fetch(`/api/game/${gameId}/reviews`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('리뷰 데이터 가져오기 실패');
+        }
+        return response.json();
+    })
+    .then(reviews => {
+        const reviewContainer = document.createElement('div');
+        reviewContainer.classList.add('reviews_container');
+
+        for (const review of reviews) {
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('review');
+
+            const authorInfo = document.createElement('p');
+            authorInfo.classList.add('review_author');
+            authorInfo.textContent = `작성자: ${review.email}`;
+
+            const reviewContent = document.createElement('p');
+            reviewContent.classList.add('review_content')
+            reviewContent.textContent = `${review.contents}`;
+
+            reviewElement.appendChild(authorInfo);
+            reviewElement.appendChild(reviewContent);
+
+            reviewContainer.appendChild(reviewElement);
+        }
+
+        const reviewdataDiv = document.getElementById('review_data');
+        reviewdataDiv.appendChild(reviewContainer);
+    })
+    .catch(error => {
+        console.error('리뷰 데이터 가져오기 오류', error);
+    });

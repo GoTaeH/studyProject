@@ -53,8 +53,8 @@ app.post('/login', (req, res) => {
     if (!email || !password) {
         return res.redirect('/login?error=missingFields');
     }
-    const validReferer = 'https://gogoth7.site/login';
-    // const validReferer = 'http://localhost:3000/login';
+    // const validReferer = 'https://gogoth7.site/login';
+    const validReferer = 'http://localhost:3000/login';
 
     // Referer 헤더 확인
     const referer = req.get('Referer');
@@ -154,8 +154,8 @@ app.post('/check', (req, res) => {
         }
         const count = rows[0].count;
         return res.status(200).json({ exists: count > 0 }); // 중복된 값이 있다면 count값이 1
-    })
-})
+    });
+});
 
 // 게임 정보 페이지로 이동
 app.get('/gameinfo/:gameId', (req, res) => {
@@ -202,6 +202,20 @@ app.get('/api/cat/:categoryId', (req, res) => {
             }
             res.status(200).json(gamesResults);
         });
+    });
+});
+
+// 리뷰 정보 가져오기
+app.get('/api/game/:gameId/reviews', (req, res) => {
+    const gameId = req.params.gameId;
+
+    const query = 'SELECT r.contents, m.email FROM review r JOIN member m ON r.member_memberid = m.memberid WHERE r.game_gameid = ?';
+    connection.query(query, [gameId], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: '리뷰 데이터 가져오기 실패' });
+        }
+        res.status(200).json(results);
     });
 });
 
