@@ -20,10 +20,11 @@ body {
     box-sizing: border-box;
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 17px;
+    width: 100%;
 }
 
 .gm_img {
-    width: 250px;
+    width: 350px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -37,6 +38,7 @@ body {
     margin: 10px;
     background-color: #f7f7f7;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .review-form {
