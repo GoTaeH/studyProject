@@ -75,7 +75,7 @@ function createGameCard(game) {
     gameImage.classList.add('game_img');
     gameImage.src =  `/image/${game.gameid}.png`;
 
-    const gameName = document.createElement('h4');
+    const gameName = document.createElement('h3');
     gameName.textContent = game.name;
 
     const gameCategory = document.createElement('p');
