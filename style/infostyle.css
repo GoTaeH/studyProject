@@ -18,8 +18,8 @@ body {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    font-family: 'Gowun Dodum', sans-serif;
-    font-size: 17px;
+    /* font-family: 'Gowun Dodum', sans-serif;
+    font-size: 18px; */
     width: 100%;
 }
 
@@ -39,6 +39,30 @@ body {
     background-color: #f7f7f7;
     box-sizing: border-box;
     width: 100%;
+}
+.gm_name {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+.gm_price {
+    font-size: 18px;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+.gm_detail {
+    font-size: 19px;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+.bookmark {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+}
+.bookmark img {
+    width: 30px;
+    height: 30px;
 }
 
 .review-form {

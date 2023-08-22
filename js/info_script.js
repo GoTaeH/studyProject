@@ -37,6 +37,115 @@ fetch(`/api/game`)
         console.error('데이터 가져오기 오류:', error);
     });
 
+// 북마크 기능
+const bookmarkDiv = document.querySelector('.bookmark');
+const bookmarkImg = document.createElement('img');
+
+bookmarkImg.src = '/image/emptystar.png';
+bookmarkImg.alt = 'Bookmark';
+
+// 로그인한 유저의 id 가져오기
+async function getUserId() {
+    try {
+        const response = await fetch('/api/userinfo');
+        const userInfo = await response.json();
+        if (response.ok) {
+            console.log('userInfo.id:', userInfo.id);
+            if (userInfo && userInfo.id) {
+                return userInfo.id;
+            } else {
+                console.error('사용자 정보에 이메일이 없습니다.');
+                return null;
+            }
+        } else {
+            console.error('사용자 정보 가져오기 실패');
+            return null;
+        }
+    } catch (error) {
+        console.error('사용자 정보 가져오기 오류:', error);
+        return null;
+    }
+}
+bookmarkImg.addEventListener('click', async () => {
+    try {
+        const userId = await getUserId();
+        console.log('userId:', userId);
+        if(userId === null) {
+            alert('로그인 후 북마크 기능을 사용할 수 있습니다.');
+            return;
+        }
+
+        const isBookmarked = bookmarkImg.src.includes('/image/yellowstar.png');
+        const bookmarkStatus = !isBookmarked ? 1 : 0;
+
+        const response = await fetch('/api/bookmark', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                gameId: gameId,
+                memberId: userId,
+                bookmarked: bookmarkStatus
+            })
+        });
+        if (response.ok) {
+            bookmarkImg.src = bookmarkStatus === 1 ? '/image/yellowstar.png' : '/image/emptystar.png';
+            bookmarkImg.alt = bookmarkStatus === 1 ? 'Bookmarked' : 'Bookmark';
+            alert(bookmarkStatus === 1 ? '게임이 북마크에 추가되었습니다.' : '게임이 북마크에서 제거되었습니다.');
+
+            if (localStorage) {
+                const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || {};
+                storedBookmarks[gameId] = bookmarkStatus === 1;
+                localStorage.setItem('bookmarks', JSON.stringify(storedBookmarks));
+            }
+        } else {
+            console.error('북마크 업데이트 실패');
+            alert('북마크 업데이트에 실패했습니다.');
+        }
+    } catch (error) {
+        console.error('북마크 업데이트 오류:', error);
+        alert('북마크 업데이트 중 오류가 발생했습니다.');
+    }
+});
+bookmarkDiv.appendChild(bookmarkImg);
+
+// 북마크 정보 가져오기
+async function loadBookmarks(userId) {
+    try {
+        const response = await fetch(`/api/bookmark/${userId}`);
+        const bookmarks = await response.json();
+        
+        bookmarks.forEach(bookmark => {
+            const gameDiv = document.querySelector(`[data-gameid="${bookmark.game_gameid}"]`);
+            if (gameDiv) {
+                const bookmarkImg = gameDiv.querySelector('img');
+                if (bookmark.bookmarked === 1) {
+                    bookmarkImg.src = '/image/yellowstar.png';
+                    bookmarkImg.alt = 'Bookmarked';
+                }
+            }
+        });
+    } catch (error) {
+        console.error('북마크 정보 가져오기 오류:', error);
+    }
+}
+
+window.addEventListener('load', async () => {
+    const userId = await getUserId();
+    if (userId !== null) {
+        loadBookmarks(userId);
+    }
+
+    // 이전에 클릭한 북마크 상태 가져오기
+    const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks')) || {};
+    if (storedBookmarks[gameId]) {
+        bookmarkImg.src = '/image/yellowstar.png';
+        bookmarkImg.alt = 'Bookmarked';
+    }
+});
+
+
 // 리뷰 작성 및 등록
 const reviewInput = document.getElementById('reviewInput');
 const submitReviewButton = document.getElementById('submitReview');

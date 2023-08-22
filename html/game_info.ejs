@@ -10,9 +10,10 @@
         <div class="gameinfo" id="gameinfo">
             <div class="content">
                 <img class="gm_img" src="/image/<%= gameInfo.gameid %>.png">
-                <p><%= gameInfo.name %></p>
-                <p>가격: <%= gameInfo.price %></p>
-                <p>설명: <%= gameInfo.detail %></p>
+                <p class="gm_name"><%= gameInfo.name %></p>
+                <p class="gm_price">가격: <%= gameInfo.price %></p>
+                <p class="gm_detail">설명: <%= gameInfo.detail %></p>
+                <div class="bookmark"></div>
             </div>
         </div>
         <div class="review-form">
