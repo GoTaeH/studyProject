@@ -85,6 +85,9 @@ async function loadBookmarks(userId) {
                         newRow.appendChild(bookmarkCell);
         
                         tbody.appendChild(newRow);
+
+                        const guideMessage = document.querySelector('.guide');
+                        guideMessage.style.display = 'block';
                     }
                 }
         

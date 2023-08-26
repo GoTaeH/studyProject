@@ -15,6 +15,15 @@ html {
     font-size: 20px;
     font-family: 'Gowun Dodum', sans-serif;
 }
+
+.guide {
+    font-size: 20px;
+    font-family: 'Gowun Dodum', sans-serif;
+    text-align: center;
+    color: rgb(45, 81, 23);
+    display: none;
+}
+
 /* 테이블 스타일 */
 table {
     width: 100%;
@@ -44,10 +53,4 @@ td {
 td img {
     width: 30px;
     height: 30px;
-}
-.guide {
-    font-size: 20px;
-    font-family: 'Gowun Dodum', sans-serif;
-    text-align: center;
-    color: rgb(45, 81, 23);
 }
