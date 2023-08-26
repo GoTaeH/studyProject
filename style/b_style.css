@@ -44,5 +44,10 @@ td {
 td img {
     width: 30px;
     height: 30px;
-    cursor: pointer;
+}
+.guide {
+    font-size: 20px;
+    font-family: 'Gowun Dodum', sans-serif;
+    text-align: center;
+    color: rgb(45, 81, 23);
 }
